@@ -1,58 +1,206 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# LEEMO PALASADA: A Unified QR-Based Platform
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+An Information Technology project repository for July 2026, built on Laravel 13.
 
-## About Laravel
+This project is intended to serve as a unified QR-based platform for public-facing services. It is designed around the idea that QR technology, digital governance, and location-based service support can be combined into a single web system to improve accessibility, efficiency, and user experience.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The current repository contains the Laravel 13 foundation of the project and can be extended into the full platform described below.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Project Overview
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+`LEEMO PALASADA` aims to support digital service transformation through a centralized platform where QR codes can be used for fast access, service identification, and guided interactions. The concept aligns with modern public service trends such as digital governance, interactive mapping, and sustainable service delivery.
 
-## Learning Laravel
+## Background of the Study
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Many institutions and communities still rely on fragmented and manual service processes. These approaches may lead to slow transactions, unclear procedures, and limited access to timely information. A unified QR-based platform can help address these challenges by providing a simple entry point to digital services, improving traceability, and making information easier to access.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+By combining QR code technology with a web-based platform, the project seeks to support faster service delivery, better navigation to service points, and a more organized digital workflow.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## Objectives of the Study
 
-## Agentic Development
+The project is guided by the following objectives:
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- Develop a unified web platform using Laravel 13.
+- Use QR codes as a quick and accessible method for service interaction.
+- Support digital governance and public service transformation.
+- Provide a structure that can be extended with interactive mapping and location-based services.
+- Promote efficiency, transparency, and sustainability in service delivery.
+
+## Scope and Limitations of the Study
+
+This repository currently focuses on the web application foundation of the proposed system using Laravel 13, Vite, Tailwind CSS, and SQLite by default.
+
+Current scope:
+
+- Laravel 13 project structure
+- PHP 8.3 application setup
+- Frontend asset pipeline with Vite
+- Tailwind CSS integration
+- SQLite-ready local development configuration
+
+Current limitations:
+
+- The repository is still in an early-stage scaffold state
+- Domain-specific modules are not yet fully implemented
+- QR workflows, mapping features, and public-service-specific processes still need to be developed
+- Production deployment configuration is not yet documented in this repository
+
+## Significance of the Study
+
+This project is significant because it presents a practical foundation for building a digital platform that can improve how services are accessed and managed. A unified QR-based system can help:
+
+- reduce manual processing
+- improve service accessibility
+- support digital record handling
+- enhance user convenience
+- create a scalable base for future public-service innovation
+
+## Definition of Terms
+
+- `QR Code`: A machine-readable code used to quickly open, identify, or connect users to digital services.
+- `Unified Platform`: A single system that centralizes multiple workflows or service functions.
+- `Digital Governance`: The use of digital systems to improve public administration and service delivery.
+- `Location-Based Services`: Features that use geographic or map-related information to guide users.
+- `Laravel 13`: The PHP framework used as the backend foundation of this project.
+
+## Research Foundation
+
+Based on the outline you provided, the project is conceptually related to these study areas:
+
+- Digital governance and public service transformation
+- QR code technology in public service applications
+- Interactive mapping and location-based services
+- Digitalization and sustainability performance
+- Challenges in digital innovation implementation
+
+## Tech Stack
+
+- `Laravel 13`
+- `PHP 8.3`
+- `Vite`
+- `Tailwind CSS 4`
+- `SQLite` for default local database setup
+- `npm` for frontend dependency management
+- `Composer` for PHP dependency management
+
+## How to Clone This Repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/itsmejay18/LEEMO-PALASADA-A-UNIFIED-QR-BASED-PLATFORM-LARAVEL-13.git
+cd LEEMO-PALASADA-A-UNIFIED-QR-BASED-PLATFORM-LARAVEL-13
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## Local Setup
 
-## Contributing
+### Prerequisites
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Make sure you have the following installed:
 
-## Code of Conduct
+- `PHP 8.3` or higher
+- `Composer`
+- `Node.js` and `npm`
+- `SQLite`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Quick Setup
 
-## Security Vulnerabilities
+This project already includes a Composer setup script. After cloning, run:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+composer setup
+```
 
-## License
+That script will:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- install Composer dependencies
+- create `.env` if it does not exist
+- generate the application key
+- run database migrations
+- install npm dependencies
+- build frontend assets
+
+## Manual Setup
+
+If you prefer to run the setup step by step, use the following:
+
+### 1. Install PHP dependencies
+
+```bash
+composer install
+```
+
+### 2. Create the environment file
+
+Windows PowerShell:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+macOS/Linux:
+
+```bash
+cp .env.example .env
+```
+
+### 3. Generate the Laravel app key
+
+```bash
+php artisan key:generate
+```
+
+### 4. Prepare the SQLite database
+
+If `database/database.sqlite` does not exist, create it.
+
+Windows PowerShell:
+
+```powershell
+New-Item database/database.sqlite -ItemType File
+```
+
+macOS/Linux:
+
+```bash
+touch database/database.sqlite
+```
+
+### 5. Run database migrations
+
+```bash
+php artisan migrate
+```
+
+### 6. Install frontend dependencies
+
+```bash
+npm install
+```
+
+### 7. Run the development server
+
+```bash
+composer dev
+```
+
+This starts the Laravel server, queue listener, and Vite development server together.
+
+## Default Development Configuration
+
+The default `.env.example` uses:
+
+- `DB_CONNECTION=sqlite`
+- `SESSION_DRIVER=database`
+- `QUEUE_CONNECTION=database`
+- `CACHE_STORE=database`
+
+If you want to use MySQL or another database, update the `.env` file before running migrations.
+
+## Running Tests
+
+```bash
+composer test
+```
+
+## Current Repository Status
+
+At the moment, this repository is best described as the initial Laravel 13 base for the full `LEEMO PALASADA` system. The README reflects the intended direction of the project based on your provided study outline, while the codebase itself is still ready for further feature development.

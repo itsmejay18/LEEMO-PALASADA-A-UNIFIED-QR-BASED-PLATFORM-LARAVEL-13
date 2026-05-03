@@ -4,7 +4,7 @@
     $currentRole = old('role', $formUser?->primaryRole() ?? 'Customer');
     $photoUrl = $formUser?->profile_photo_path
         ? asset('storage/'.$formUser->profile_photo_path)
-        : Vite::asset('resources/vendor/coreui-kit/assets/img/avatars/8.jpg');
+        : Vite::asset('resources/img/favicon.png');
 @endphp
 
 <form method="POST" action="{{ $editing ? route('admin.users.update', $formUser) : route('admin.users.store') }}" enctype="multipart/form-data" class="row g-3">

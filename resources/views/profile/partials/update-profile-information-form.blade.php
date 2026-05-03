@@ -10,7 +10,7 @@
             @php
                 $profilePhotoUrl = $user->profile_photo_path
                     ? asset('storage/'.$user->profile_photo_path)
-                    : Vite::asset('resources/vendor/coreui-kit/assets/img/avatars/8.jpg');
+                    : Vite::asset('resources/img/favicon.png');
             @endphp
             <img class="profile-photo-preview" src="{{ $profilePhotoUrl }}" alt="{{ $user->name }} profile photo">
             <div class="flex-grow-1">

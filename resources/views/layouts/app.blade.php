@@ -33,7 +33,7 @@
         $coreuiIconPath = Vite::asset('resources/vendor/coreui-kit/vendors/@coreui/icons/svg/free.svg');
         $avatarPath = auth()->user()->profile_photo_path
             ? asset('storage/'.auth()->user()->profile_photo_path)
-            : Vite::asset('resources/vendor/coreui-kit/assets/img/avatars/8.jpg');
+            : Vite::asset('resources/img/favicon.png');
     @endphp
     <body class="market-app dashboard-shell">
         @include('layouts.sidebar')

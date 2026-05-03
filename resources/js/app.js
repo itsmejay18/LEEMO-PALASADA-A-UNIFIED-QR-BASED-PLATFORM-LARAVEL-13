@@ -66,16 +66,34 @@ const initLeafletMaps = () => {
         let selectedMarker = null;
         let selectedPayload = null;
 
+        const markerColors = {
+            paid: '#198754',
+            unpaid: '#dc3545',
+            vacant: '#6c757d',
+        };
+
         markers.forEach((marker) => {
+            const markerColor = marker.contract_status === 'expiring'
+                ? '#fd7e14'
+                : (markerColors[marker.payment_status] || '#0d6efd');
             const popupContent = `
                 <div class="small">
                     <strong>Stall ${marker.stall_number}</strong><br>
                     ${marker.vendor_name ?? 'Open stall location'}<br>
-                    ${marker.zone_section}, Floor ${marker.floor_level}
+                    ${marker.zone_section}, Floor ${marker.floor_level}<br>
+                    Payment: ${marker.payment_status ?? 'untracked'}<br>
+                    Contract: ${marker.contract_status ?? 'untracked'}<br>
+                    <a href="${marker.target_url}">Open QR page</a>
                 </div>
             `;
 
-            const leafletMarker = L.marker([marker.latitude, marker.longitude]).addTo(map).bindPopup(popupContent);
+            const leafletMarker = L.circleMarker([marker.latitude, marker.longitude], {
+                radius: 10,
+                color: markerColor,
+                fillColor: markerColor,
+                fillOpacity: 0.85,
+                weight: 3,
+            }).addTo(map).bindPopup(popupContent);
 
             if (marker.qr_location_code === selectedCode) {
                 selectedMarker = leafletMarker;

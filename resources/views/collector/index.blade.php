@@ -8,7 +8,7 @@
             <p class="section-label">Collection Records</p>
             <h1 class="page-title mb-1">Submitted vendor remittances</h1>
         </div>
-        <a href="{{ route('collector.collections.create') }}" class="btn btn-brand">New Collection</a>
+        <button type="button" class="btn btn-brand" data-coreui-toggle="modal" data-coreui-target="#collectionCreateModal">New Collection</button>
     </div>
 
     <div class="content-card p-4">
@@ -31,7 +31,11 @@
                             <td><span class="badge-soft">{{ ucfirst($collection->status) }}</span></td>
                             <td>PHP {{ number_format($collection->amount_collected, 2) }}</td>
                             <td>
-                                <a href="{{ route('collector.collections.edit', $collection) }}" class="btn btn-sm btn-outline-brand">Edit</a>
+                                @if ($collection->status !== 'verified')
+                                    <button type="button" class="btn btn-sm btn-outline-brand" data-coreui-toggle="modal" data-coreui-target="#collectionEditModal{{ $collection->id }}">Edit</button>
+                                @else
+                                    <span class="text-muted small">Locked</span>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -41,4 +45,36 @@
 
         {{ $collections->links() }}
     </div>
+
+    <div class="modal fade" id="collectionCreateModal" tabindex="-1" aria-labelledby="collectionCreateModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="collectionCreateModalLabel">Record Collection</h2>
+                    <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @include('collector._form')
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @foreach ($collections as $collection)
+        @if ($collection->status !== 'verified')
+            <div class="modal fade" id="collectionEditModal{{ $collection->id }}" tabindex="-1" aria-labelledby="collectionEditModal{{ $collection->id }}Label" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title fs-5" id="collectionEditModal{{ $collection->id }}Label">Edit Collection #{{ $collection->id }}</h2>
+                            <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            @include('collector._form', ['collection' => $collection])
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endforeach
 @endsection

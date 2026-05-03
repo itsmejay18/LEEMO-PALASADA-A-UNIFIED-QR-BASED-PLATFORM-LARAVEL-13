@@ -33,6 +33,7 @@ class CollectorController extends Controller
                 ->where('collector_id', auth()->id())
                 ->latest('collection_date')
                 ->paginate(12),
+            'vendors' => Vendor::active()->orderBy('vendor_name')->get(),
         ]);
     }
 

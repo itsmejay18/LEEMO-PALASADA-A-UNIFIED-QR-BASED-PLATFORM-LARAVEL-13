@@ -23,6 +23,10 @@ class Vendor extends Model
         'stall_number',
         'contact_number',
         'email',
+        'category',
+        'contract_start_date',
+        'contract_end_date',
+        'monthly_rent',
         'logo_path',
         'is_active',
     ];
@@ -34,6 +38,9 @@ class Vendor extends Model
     {
         return [
             'is_active' => 'boolean',
+            'contract_start_date' => 'date',
+            'contract_end_date' => 'date',
+            'monthly_rent' => 'decimal:2',
         ];
     }
 

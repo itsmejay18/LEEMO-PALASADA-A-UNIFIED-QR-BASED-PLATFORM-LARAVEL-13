@@ -1,5 +1,6 @@
 @php
     $editing = isset($product);
+    $formId = $editing ? 'product_is_available_'.$product->id : 'product_is_available_new';
 @endphp
 
 <form method="POST" action="{{ $editing ? route('vendor.products.update', $product) : route('vendor.products.store') }}" class="row g-3">
@@ -30,8 +31,8 @@
 
     <div class="col-12">
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" name="is_available" value="1" id="is_available" @checked(old('is_available', $product->is_available ?? true))>
-            <label class="form-check-label" for="is_available">Product is available</label>
+            <input class="form-check-input" type="checkbox" name="is_available" value="1" id="{{ $formId }}" @checked(old('is_available', $product->is_available ?? true))>
+            <label class="form-check-label" for="{{ $formId }}">Product is available</label>
         </div>
     </div>
 

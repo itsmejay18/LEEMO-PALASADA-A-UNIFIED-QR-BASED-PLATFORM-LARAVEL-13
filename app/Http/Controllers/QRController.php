@@ -12,6 +12,39 @@ use Illuminate\Http\Response;
 
 class QRController extends Controller
 {
+    public function scanner(): View
+    {
+        return view('qr.scanner');
+    }
+
+    public function generator(): View
+    {
+        $user = auth()->user();
+        $products = collect();
+        $marketMaps = collect();
+
+        if ($user->hasAnyRole(['Admin', 'Manager'])) {
+            $products = Product::with('vendor')->orderBy('product_name')->get();
+            $marketMaps = MarketMap::with('vendor')->orderBy('stall_number')->get();
+        } elseif ($user->hasRole('Vendor') && $user->vendor) {
+            $products = Product::with('vendor')
+                ->where('vendor_id', $user->vendor_id)
+                ->orderBy('product_name')
+                ->get();
+            $marketMaps = MarketMap::with('vendor')
+                ->where('stall_number', $user->vendor->stall_number)
+                ->orderBy('stall_number')
+                ->get();
+        } elseif ($user->hasAnyRole(['Collector', 'Treasurer'])) {
+            $marketMaps = MarketMap::with('vendor')->orderBy('stall_number')->get();
+        }
+
+        return view('qr.generator', [
+            'products' => $products,
+            'marketMaps' => $marketMaps,
+        ]);
+    }
+
     public function showProduct(Product $product): View
     {
         return view('qr.product', [

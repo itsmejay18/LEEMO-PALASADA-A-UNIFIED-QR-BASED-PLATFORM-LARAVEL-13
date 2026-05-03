@@ -31,7 +31,9 @@
         $appName = $appSettings['market_name'] ?? config('app.name', 'LEEMO-PALASADA');
         $pageTitle = trim($__env->yieldContent('title')) ?: $appName;
         $coreuiIconPath = Vite::asset('resources/vendor/coreui-kit/vendors/@coreui/icons/svg/free.svg');
-        $avatarPath = Vite::asset('resources/vendor/coreui-kit/assets/img/avatars/8.jpg');
+        $avatarPath = auth()->user()->profile_photo_path
+            ? asset('storage/'.auth()->user()->profile_photo_path)
+            : Vite::asset('resources/vendor/coreui-kit/assets/img/avatars/8.jpg');
     @endphp
     <body class="market-app dashboard-shell">
         @include('layouts.sidebar')
@@ -162,7 +164,7 @@
                 <div class="container-fluid px-4">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb my-0">
-                            <li class="breadcrumb-item"><a href="{{ route('landing') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route(auth()->user()->dashboardRoute()) }}">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">{{ $pageTitle }}</li>
                         </ol>
                     </nav>

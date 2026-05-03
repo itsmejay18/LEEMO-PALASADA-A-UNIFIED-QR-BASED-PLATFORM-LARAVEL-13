@@ -39,17 +39,35 @@
             'href' => route('collector.collections.index'),
             'active' => ['collector.collections.*'],
         ] : null,
+        $user->hasRole('Collector') ? [
+            'label' => 'Unpaid Route Map',
+            'icon' => 'cil-map',
+            'href' => route('map.index', ['payment' => 'unpaid']),
+            'active' => ['map.*'],
+        ] : null,
         $user->hasRole('Treasurer') ? [
             'label' => 'Verification',
             'icon' => 'cil-check-circle',
             'href' => route('treasurer.collections.index'),
             'active' => ['treasurer.collections.*', 'treasurer.records.*', 'treasurer.receipts.*'],
         ] : null,
+        $user->hasRole('Treasurer') ? [
+            'label' => 'Compliance Map',
+            'icon' => 'cil-map',
+            'href' => route('map.index', ['payment' => 'unpaid']),
+            'active' => ['map.*'],
+        ] : null,
         $user->hasRole('Manager') ? [
             'label' => 'Vendors',
             'icon' => 'cil-people',
             'href' => route('manager.vendors.index'),
             'active' => ['manager.vendors.*'],
+        ] : null,
+        $user->hasRole('Manager') ? [
+            'label' => 'Expiring Contracts',
+            'icon' => 'cil-calendar',
+            'href' => route('map.index', ['contract' => 'expiring']),
+            'active' => ['map.*'],
         ] : null,
         $user->hasRole('Manager') ? [
             'label' => 'Reports',
@@ -73,13 +91,13 @@
 
     $navGroups = [
         [
-            'label' => 'Explore',
+            'label' => 'Main',
             'items' => [
                 [
-                    'label' => 'Home',
-                    'icon' => 'cil-home',
-                    'href' => route('landing'),
-                    'active' => ['landing'],
+                    'label' => 'Dashboard',
+                    'icon' => 'cil-speedometer',
+                    'href' => route($user->dashboardRoute()),
+                    'active' => ['dashboard', '*.dashboard'],
                 ],
                 [
                     'label' => 'Market Map',
@@ -87,11 +105,22 @@
                     'href' => route('map.index'),
                     'active' => ['map.*'],
                 ],
+            ],
+        ],
+        [
+            'label' => 'QR Tools',
+            'items' => [
                 [
-                    'label' => 'Dashboard',
-                    'icon' => 'cil-speedometer',
-                    'href' => route($user->dashboardRoute()),
-                    'active' => ['dashboard', '*.dashboard'],
+                    'label' => 'QR Scanner',
+                    'icon' => 'cil-qr-code',
+                    'href' => route('qr.scanner'),
+                    'active' => ['qr.scanner'],
+                ],
+                [
+                    'label' => 'QR Generator',
+                    'icon' => 'cil-print',
+                    'href' => route('qr.generator'),
+                    'active' => ['qr.generator', 'qr.products.*', 'qr.locations.*'],
                 ],
             ],
         ],

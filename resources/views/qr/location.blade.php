@@ -1,4 +1,4 @@
-@extends('layouts.guest')
+@extends(auth()->check() ? 'layouts.app' : 'layouts.guest')
 
 @section('title', $marketMap->stall_number.' Navigation | LEEMO-PALASADA')
 

@@ -34,6 +34,10 @@ class StoreVendorRequest extends FormRequest
                 'max:255',
                 Rule::unique('vendors', 'email'),
             ],
+            'category' => ['nullable', 'string', 'max:100'],
+            'contract_start_date' => ['nullable', 'date'],
+            'contract_end_date' => ['nullable', 'date'],
+            'monthly_rent' => ['nullable', 'numeric', 'min:0', 'max:99999999.99'],
             'logo' => ['nullable', 'image', 'max:2048'],
             'is_active' => ['nullable', 'boolean'],
         ];

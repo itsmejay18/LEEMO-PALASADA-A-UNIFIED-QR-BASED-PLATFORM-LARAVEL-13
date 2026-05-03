@@ -30,6 +30,9 @@ Route::middleware('auth')->group(function (): void {
         return redirect()->route(auth()->user()->dashboardRoute());
     })->name('dashboard');
 
+    Route::get('/qr/scanner', [QRController::class, 'scanner'])->name('qr.scanner');
+    Route::get('/qr/generator', [QRController::class, 'generator'])->name('qr.generator');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -89,6 +92,10 @@ Route::middleware('auth')->group(function (): void {
     Route::middleware('check.role:Admin')->prefix('admin')->name('admin.')->group(function (): void {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::get('/users', [AdminController::class, 'users'])->name('users');
+        Route::post('/users', [AdminController::class, 'storeUser'])->name('users.store');
+        Route::put('/users/{user}', [AdminController::class, 'updateUser'])->name('users.update');
+        Route::delete('/users/{user}', [AdminController::class, 'destroyUser'])->name('users.destroy');
+        Route::patch('/users/{user}/restore', [AdminController::class, 'restoreUser'])->name('users.restore');
         Route::patch('/users/{user}/role', [AdminController::class, 'updateUserRole'])->name('users.role');
         Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
         Route::put('/settings', [AdminController::class, 'updateSettings'])->name('settings.update');

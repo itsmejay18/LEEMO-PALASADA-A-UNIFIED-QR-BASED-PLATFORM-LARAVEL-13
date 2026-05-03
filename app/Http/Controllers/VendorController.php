@@ -27,7 +27,12 @@ class VendorController extends Controller
                 'weekly_sales' => Transaction::where('vendor_id', $vendor->id)->whereBetween('transaction_date', [now()->startOfWeek(), now()->endOfWeek()])->sum('total_amount'),
                 'monthly_sales' => Transaction::where('vendor_id', $vendor->id)->whereBetween('transaction_date', [now()->startOfMonth(), now()->endOfMonth()])->sum('total_amount'),
                 'products' => $vendor->products()->count(),
+                'current_month_rent_paid' => $vendor->collections()
+                    ->where('status', 'verified')
+                    ->whereBetween('collection_date', [now()->startOfMonth(), now()->endOfMonth()])
+                    ->exists(),
             ],
+            'recentCollections' => $vendor->collections()->latest('collection_date')->take(6)->get(),
             'recentSales' => Transaction::with('customer')->where('vendor_id', $vendor->id)->latest('transaction_date')->take(8)->get(),
             'topProducts' => TransactionItem::query()
                 ->select('product_id', DB::raw('SUM(quantity) as units_sold'))

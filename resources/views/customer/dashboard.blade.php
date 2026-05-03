@@ -3,23 +3,6 @@
 @section('title', 'Customer Dashboard | LEEMO-PALASADA')
 
 @section('content')
-    <div class="row g-4 mb-4">
-        <div class="col-lg-8">
-            <div class="content-card p-4 h-100">
-                <p class="section-label">Customer Dashboard</p>
-                <h1 class="page-title mb-1">Welcome back, {{ auth()->user()->name }}</h1>
-                <p class="text-muted mb-0">Review your orders, manage favorites, and scan QR codes for faster shopping.</p>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="scanner-card h-100">
-                <p class="section-label">Live QR Scanner</p>
-                <div id="customer-qr-scanner" class="scanner-frame" data-qr-scanner data-resolve-endpoint="{{ route('api.scan.resolve') }}" data-result-target="#qr-status"></div>
-                <p id="qr-status" class="small text-muted mb-0">Use your device camera to scan product or stall QR codes.</p>
-            </div>
-        </div>
-    </div>
-
     @include('partials.coreui-stat-cards', ['cards' => [
         ['label' => 'Total Orders', 'value' => $stats['orders'], 'color' => 'primary', 'icon' => 'cil-list-rich', 'change' => '12.4%', 'trend' => 'up', 'progress' => 70],
         ['label' => 'Total Spent', 'value' => 'PHP '.number_format($stats['spent'], 2), 'color' => 'info', 'icon' => 'cil-wallet', 'change' => '8.1%', 'trend' => 'up', 'progress' => 58],

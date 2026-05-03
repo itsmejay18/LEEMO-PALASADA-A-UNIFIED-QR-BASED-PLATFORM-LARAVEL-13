@@ -20,7 +20,7 @@
 
     <div class="col-md-3">
         <label class="form-label">Amount Collected</label>
-        <input type="number" step="0.01" min="0" name="amount_collected" class="form-control" value="{{ old('amount_collected', $collection->amount_collected ?? '') }}" required>
+        <input type="number" step="0.01" min="0.01" name="amount_collected" class="form-control" value="{{ old('amount_collected', $collection->amount_collected ?? '') }}" required>
     </div>
 
     <div class="col-md-3">

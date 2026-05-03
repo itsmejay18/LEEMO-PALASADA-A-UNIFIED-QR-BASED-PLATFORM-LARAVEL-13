@@ -34,6 +34,16 @@ class UserSeeder extends Seeder
         );
         $treasurer->syncRoles(['Treasurer']);
 
+        $defaultCustomer = User::updateOrCreate(
+            ['email' => 'customer@leemo.com'],
+            [
+                'name' => 'Demo Customer',
+                'password' => 'password',
+                'vendor_id' => null,
+            ],
+        );
+        $defaultCustomer->syncRoles(['Customer']);
+
         Vendor::query()->orderBy('id')->get()->each(function (Vendor $vendor, int $index): void {
             $user = User::updateOrCreate(
                 ['email' => 'vendor'.($index + 1).'@leemo.com'],
@@ -49,7 +59,7 @@ class UserSeeder extends Seeder
 
         for ($i = 1; $i <= 12; $i++) {
             $customer = User::updateOrCreate(
-                ['email' => 'customer@leemo.com'],
+                ['email' => 'customer'.$i.'@leemo.com'],
                 [
                     'name' => 'Customer '.$i,
                     'password' => 'password',
@@ -61,6 +71,10 @@ class UserSeeder extends Seeder
         }
 
         $vendors = Vendor::query()->pluck('id')->all();
+
+        User::doesntHave('roles')->get()->each(function (User $user): void {
+            $user->syncRoles(['Customer']);
+        });
 
         User::role('Customer')->get()->each(function (User $customer) use ($vendors): void {
             $favoriteVendorIds = collect($vendors)->shuffle()->take(3);

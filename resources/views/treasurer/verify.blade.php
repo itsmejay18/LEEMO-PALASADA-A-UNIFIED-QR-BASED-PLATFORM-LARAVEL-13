@@ -27,7 +27,7 @@
 
                     <div class="col-md-6">
                         <label class="form-label">Verified Amount</label>
-                        <input type="number" step="0.01" min="0" name="amount_verified" class="form-control" value="{{ old('amount_verified', $collection->amount_collected) }}" required>
+                        <input type="number" step="0.01" min="0.01" name="amount_verified" class="form-control" value="{{ old('amount_verified', $collection->amount_collected) }}" required>
                     </div>
 
                     <div class="col-md-6">

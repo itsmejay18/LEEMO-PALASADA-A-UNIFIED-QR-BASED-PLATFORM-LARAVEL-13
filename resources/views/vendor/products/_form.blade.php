@@ -16,7 +16,7 @@
 
     <div class="col-md-3">
         <label class="form-label">Price</label>
-        <input type="number" name="price" min="0" step="0.01" class="form-control" value="{{ old('price', $product->price ?? '') }}" required>
+        <input type="number" name="price" min="0.01" step="0.01" class="form-control" value="{{ old('price', $product->price ?? '') }}" required>
     </div>
 
     <div class="col-md-3">

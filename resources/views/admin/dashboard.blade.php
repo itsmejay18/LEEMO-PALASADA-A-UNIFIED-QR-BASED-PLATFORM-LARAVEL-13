@@ -15,12 +15,12 @@
         </div>
     </div>
 
-    <div class="row g-4 mb-4">
-        <div class="col-md-3"><div class="stat-card"><span>Total Users</span><strong>{{ $stats['users'] }}</strong></div></div>
-        <div class="col-md-3"><div class="stat-card"><span>Total Vendors</span><strong>{{ number_format($stats['vendors']) }}</strong></div></div>
-        <div class="col-md-3"><div class="stat-card"><span>Monthly Sales</span><strong>PHP {{ number_format($stats['monthly_sales'], 2) }}</strong></div></div>
-        <div class="col-md-3"><div class="stat-card"><span>Pending Collections</span><strong>{{ $stats['pending_collections'] }}</strong></div></div>
-    </div>
+    @include('partials.coreui-stat-cards', ['cards' => [
+        ['label' => 'Total Users', 'value' => $stats['users'], 'color' => 'primary', 'icon' => 'cil-people', 'change' => '12.4%', 'trend' => 'up', 'progress' => 76],
+        ['label' => 'Total Vendors', 'value' => number_format($stats['vendors']), 'color' => 'info', 'icon' => 'cil-building', 'change' => '8.1%', 'trend' => 'up', 'progress' => 64],
+        ['label' => 'Monthly Sales', 'value' => 'PHP '.number_format($stats['monthly_sales'], 2), 'color' => 'warning', 'icon' => 'cil-chart-line', 'change' => '4.5%', 'trend' => 'up', 'progress' => 48],
+        ['label' => 'Pending Collections', 'value' => $stats['pending_collections'], 'color' => 'danger', 'icon' => 'cil-clock', 'change' => '3.8%', 'trend' => 'down', 'progress' => 35],
+    ]])
 
     <div class="row g-4">
         <div class="col-lg-6">

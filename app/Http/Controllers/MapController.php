@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\MarketMap;
-use App\Models\Product;
 use App\Models\Vendor;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
@@ -11,18 +10,9 @@ use Illuminate\Http\Request;
 
 class MapController extends Controller
 {
-    public function landing(Request $request): View
+    public function landing(): View
     {
-        $search = trim($request->string('search')->toString());
-        $marketMaps = MarketMap::with('vendor')->orderBy('stall_number')->get();
-
-        return view('welcome', [
-            'featuredVendors' => Vendor::active()->with('marketMap')->orderBy('vendor_name')->take(6)->get(),
-            'topProducts' => Product::available()->with('vendor')->orderBy('product_name')->take(8)->get(),
-            'search' => $search,
-            'searchResults' => $this->searchResults($search),
-            'mapMarkers' => $this->mapMarkers($marketMaps),
-        ]);
+        return view('welcome');
     }
 
     public function index(Request $request): View

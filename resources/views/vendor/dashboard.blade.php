@@ -12,12 +12,12 @@
         <a href="{{ route('vendor.products.create') }}" class="btn btn-brand">Add Product</a>
     </div>
 
-    <div class="row g-4 mb-4">
-        <div class="col-md-3"><div class="stat-card"><span>Daily Sales</span><strong>PHP {{ number_format($stats['daily_sales'], 2) }}</strong></div></div>
-        <div class="col-md-3"><div class="stat-card"><span>Weekly Sales</span><strong>PHP {{ number_format($stats['weekly_sales'], 2) }}</strong></div></div>
-        <div class="col-md-3"><div class="stat-card"><span>Monthly Sales</span><strong>PHP {{ number_format($stats['monthly_sales'], 2) }}</strong></div></div>
-        <div class="col-md-3"><div class="stat-card"><span>Products Listed</span><strong>{{ $stats['products'] }}</strong></div></div>
-    </div>
+    @include('partials.coreui-stat-cards', ['cards' => [
+        ['label' => 'Daily Sales', 'value' => 'PHP '.number_format($stats['daily_sales'], 2), 'color' => 'primary', 'icon' => 'cil-cash', 'change' => '12.4%', 'trend' => 'up', 'progress' => 70],
+        ['label' => 'Weekly Sales', 'value' => 'PHP '.number_format($stats['weekly_sales'], 2), 'color' => 'info', 'icon' => 'cil-chart-line', 'change' => '8.1%', 'trend' => 'up', 'progress' => 56],
+        ['label' => 'Monthly Sales', 'value' => 'PHP '.number_format($stats['monthly_sales'], 2), 'color' => 'warning', 'icon' => 'cil-wallet', 'change' => '4.5%', 'trend' => 'up', 'progress' => 42],
+        ['label' => 'Products Listed', 'value' => $stats['products'], 'color' => 'danger', 'icon' => 'cil-basket', 'change' => '3.8%', 'trend' => 'down', 'progress' => 34],
+    ]])
 
     <div class="row g-4">
         <div class="col-lg-5">

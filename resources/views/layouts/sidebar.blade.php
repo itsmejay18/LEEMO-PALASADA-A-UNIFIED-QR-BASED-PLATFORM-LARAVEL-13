@@ -1,81 +1,71 @@
 @php
     $user = auth()->user();
     $appName = $appSettings['market_name'] ?? config('app.name', 'LEEMO-PALASADA');
+    $sidebarLogo = Vite::asset('resources/img/sidebarlogo-cropped.png');
     $workspaceItems = array_values(array_filter([
         $user->hasRole('Customer') ? [
             'label' => 'Transactions',
-            'meta' => 'Orders and payment history',
-            'icon' => 'bi-receipt',
+            'icon' => 'cil-file',
             'href' => route('customer.transactions'),
             'active' => ['customer.transactions'],
         ] : null,
         $user->hasRole('Customer') ? [
             'label' => 'Bookmarks',
-            'meta' => 'Saved vendor shortcuts',
-            'icon' => 'bi-bookmark-heart',
+            'icon' => 'cil-bookmark',
             'href' => route('customer.bookmarks'),
             'active' => ['customer.bookmarks'],
         ] : null,
         $user->hasRole('Customer') ? [
             'label' => 'Cart',
-            'meta' => 'Checkout and item review',
-            'icon' => 'bi-cart3',
+            'icon' => 'cil-cart',
             'href' => route('customer.cart'),
             'active' => ['customer.cart', 'customer.checkout', 'customer.checkout.store'],
         ] : null,
         $user->hasRole('Vendor') ? [
             'label' => 'Products',
-            'meta' => 'Inventory and QR assets',
-            'icon' => 'bi-box-seam',
+            'icon' => 'cil-basket',
             'href' => route('vendor.products.index'),
             'active' => ['vendor.products.*'],
         ] : null,
         $user->hasRole('Vendor') && $user->vendor ? [
             'label' => 'Public Profile',
-            'meta' => 'Vendor storefront preview',
-            'icon' => 'bi-shop',
+            'icon' => 'cil-building',
             'href' => route('vendors.show', $user->vendor),
             'active' => ['vendors.show'],
         ] : null,
         $user->hasRole('Collector') ? [
             'label' => 'Collections',
-            'meta' => 'Vendor dues and proofs',
-            'icon' => 'bi-cash-stack',
+            'icon' => 'cil-money',
             'href' => route('collector.collections.index'),
             'active' => ['collector.collections.*'],
         ] : null,
         $user->hasRole('Treasurer') ? [
             'label' => 'Verification',
-            'meta' => 'Receipts and audits',
-            'icon' => 'bi-patch-check',
+            'icon' => 'cil-check-circle',
             'href' => route('treasurer.collections.index'),
             'active' => ['treasurer.collections.*', 'treasurer.records.*', 'treasurer.receipts.*'],
         ] : null,
         $user->hasRole('Manager') ? [
             'label' => 'Vendors',
-            'meta' => 'Stalls and assignments',
-            'icon' => 'bi-people',
+            'icon' => 'cil-people',
             'href' => route('manager.vendors.index'),
             'active' => ['manager.vendors.*'],
         ] : null,
         $user->hasRole('Manager') ? [
             'label' => 'Reports',
-            'meta' => 'Market analytics and trends',
-            'icon' => 'bi-bar-chart-line',
+            'icon' => 'cil-chart',
             'href' => route('manager.reports'),
             'active' => ['manager.reports'],
         ] : null,
         $user->hasRole('Admin') ? [
             'label' => 'Users',
-            'meta' => 'Accounts and role control',
-            'icon' => 'bi-person-gear',
+            'icon' => 'cil-user',
             'href' => route('admin.users'),
             'active' => ['admin.users', 'admin.users.*'],
         ] : null,
         $user->hasRole('Admin') ? [
             'label' => 'Settings',
-            'meta' => 'Platform configuration',
-            'icon' => 'bi-sliders',
+            'icon' => 'cil-settings',
             'href' => route('admin.settings'),
             'active' => ['admin.settings', 'admin.settings.*'],
         ] : null,
@@ -87,22 +77,19 @@
             'items' => [
                 [
                     'label' => 'Home',
-                    'meta' => 'Landing and featured stalls',
-                    'icon' => 'bi-house-door',
+                    'icon' => 'cil-home',
                     'href' => route('landing'),
                     'active' => ['landing'],
                 ],
                 [
                     'label' => 'Market Map',
-                    'meta' => 'Wayfinding and stall search',
-                    'icon' => 'bi-geo-alt',
+                    'icon' => 'cil-location-pin',
                     'href' => route('map.index'),
                     'active' => ['map.*'],
                 ],
                 [
                     'label' => 'Dashboard',
-                    'meta' => 'Role overview and KPIs',
-                    'icon' => 'bi-speedometer2',
+                    'icon' => 'cil-speedometer',
                     'href' => route($user->dashboardRoute()),
                     'active' => ['dashboard', '*.dashboard'],
                 ],
@@ -117,8 +104,7 @@
             'items' => [
                 [
                     'label' => 'Profile',
-                    'meta' => 'Personal settings and security',
-                    'icon' => 'bi-person-circle',
+                    'icon' => 'cil-user',
                     'href' => route('profile.edit'),
                     'active' => ['profile.*'],
                 ],
@@ -127,78 +113,49 @@
     ];
 @endphp
 
-<div class="sidebar-backdrop" data-dashboard-sidebar-close></div>
+<div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
+    <div class="sidebar-header border-bottom justify-content-center" style="min-height: 120px; padding: 1rem;">
+        <a class="sidebar-brand text-decoration-none" href="{{ route('landing') }}">
+            <img class="sidebar-brand-full" src="{{ $sidebarLogo }}" alt="{{ $appName }}" style="height: 96px; max-width: 100%; object-fit: contain;">
+            <img class="sidebar-brand-narrow" src="{{ $sidebarLogo }}" alt="{{ $appName }}" style="height: 54px; width: 54px; object-fit: cover; object-position: left center;">
+        </a>
+        <button class="btn-close d-lg-none" type="button" data-coreui-theme="dark" aria-label="Close sidebar" onclick="coreui.Sidebar.getOrCreateInstance(document.querySelector('#sidebar')).toggle()"></button>
+    </div>
 
-<aside class="dashboard-sidebar" id="dashboardSidebar">
-    <div class="dashboard-sidebar-panel">
-        <div class="sidebar-header">
-            <a class="sidebar-brand" href="{{ route('landing') }}">
-                <span class="brand-mark">LP</span>
-                <span class="sidebar-brand-copy">
-                    <span class="brand-title d-block">{{ $appName }}</span>
-                    <small class="brand-subtitle d-block">Unified QR Market Platform</small>
-                </span>
-            </a>
+    <ul class="sidebar-nav" data-coreui="navigation" data-simplebar>
+        @foreach($navGroups as $group)
+            @if(count($group['items']))
+                <li class="nav-title">{{ $group['label'] }}</li>
 
-            <button class="sidebar-close" type="button" data-dashboard-sidebar-close aria-label="Close sidebar">
-                <i class="bi bi-x-lg"></i>
-            </button>
-        </div>
+                @foreach($group['items'] as $item)
+                    @php
+                        $isActive = request()->routeIs(...$item['active']);
+                    @endphp
 
-        <div class="sidebar-user-card">
-            <span class="sidebar-avatar">{{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr($user->name, 0, 1)) }}</span>
+                    <li class="nav-item">
+                        <a class="nav-link {{ $isActive ? 'active' : '' }}" href="{{ $item['href'] }}">
+                            <i class="nav-icon {{ $item['icon'] }}"></i>
+                            {{ $item['label'] }}
+                        </a>
+                    </li>
+                @endforeach
+            @endif
+        @endforeach
 
-            <div class="sidebar-user-copy">
-                <span class="sidebar-user-name">{{ $user->name }}</span>
-                <small class="sidebar-user-email">{{ $user->email }}</small>
-                <span class="badge-soft mt-2">{{ $user->primaryRole() ?? 'User' }}</span>
-            </div>
-        </div>
-
-        <div class="sidebar-nav-stack">
-            @foreach($navGroups as $group)
-                @if(count($group['items']))
-                    <section class="sidebar-section">
-                        <p class="sidebar-section-title">{{ $group['label'] }}</p>
-
-                        <nav class="sidebar-nav">
-                            @foreach($group['items'] as $item)
-                                @php
-                                    $isActive = request()->routeIs(...$item['active']);
-                                @endphp
-
-                                <a class="sidebar-nav-link {{ $isActive ? 'active' : '' }}" href="{{ $item['href'] }}">
-                                    <span class="sidebar-icon">
-                                        <i class="bi {{ $item['icon'] }}"></i>
-                                    </span>
-
-                                    <span class="sidebar-nav-copy">
-                                        <span class="sidebar-nav-label">{{ $item['label'] }}</span>
-                                        <small class="sidebar-nav-meta">{{ $item['meta'] }}</small>
-                                    </span>
-                                </a>
-                            @endforeach
-                        </nav>
-                    </section>
-                @endif
-            @endforeach
-        </div>
-
-        <div class="sidebar-footer">
+        <li class="nav-divider"></li>
+        <li class="nav-title">Session</li>
+        <li class="nav-item mt-auto">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-
-                <button class="sidebar-nav-link sidebar-logout" type="submit">
-                    <span class="sidebar-icon">
-                        <i class="bi bi-box-arrow-right"></i>
-                    </span>
-
-                    <span class="sidebar-nav-copy">
-                        <span class="sidebar-nav-label">Logout</span>
-                        <small class="sidebar-nav-meta">End your current session</small>
-                    </span>
+                <button class="nav-link w-100 border-0" type="submit">
+                    <i class="nav-icon cil-account-logout"></i>
+                    Logout
                 </button>
             </form>
-        </div>
+        </li>
+    </ul>
+
+    <div class="sidebar-footer border-top d-none d-md-flex">
+        <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable" aria-label="Collapse sidebar"></button>
     </div>
-</aside>
+</div>

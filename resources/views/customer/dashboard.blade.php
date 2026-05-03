@@ -20,12 +20,12 @@
         </div>
     </div>
 
-    <div class="row g-4 mb-4">
-        <div class="col-md-3"><div class="stat-card"><span>Total Orders</span><strong>{{ $stats['orders'] }}</strong></div></div>
-        <div class="col-md-3"><div class="stat-card"><span>Total Spent</span><strong>PHP {{ number_format($stats['spent'], 2) }}</strong></div></div>
-        <div class="col-md-3"><div class="stat-card"><span>Bookmarks</span><strong>{{ $stats['bookmarks'] }}</strong></div></div>
-        <div class="col-md-3"><div class="stat-card"><span>Cart Items</span><strong>{{ $stats['cart_items'] }}</strong></div></div>
-    </div>
+    @include('partials.coreui-stat-cards', ['cards' => [
+        ['label' => 'Total Orders', 'value' => $stats['orders'], 'color' => 'primary', 'icon' => 'cil-list-rich', 'change' => '12.4%', 'trend' => 'up', 'progress' => 70],
+        ['label' => 'Total Spent', 'value' => 'PHP '.number_format($stats['spent'], 2), 'color' => 'info', 'icon' => 'cil-wallet', 'change' => '8.1%', 'trend' => 'up', 'progress' => 58],
+        ['label' => 'Bookmarks', 'value' => $stats['bookmarks'], 'color' => 'warning', 'icon' => 'cil-bookmark', 'change' => '4.5%', 'trend' => 'up', 'progress' => 45],
+        ['label' => 'Cart Items', 'value' => $stats['cart_items'], 'color' => 'danger', 'icon' => 'cil-cart', 'change' => '3.8%', 'trend' => 'down', 'progress' => 32],
+    ]])
 
     <div class="row g-4">
         <div class="col-lg-7">

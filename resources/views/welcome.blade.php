@@ -1,133 +1,225 @@
-@extends('layouts.guest')
+@extends('layouts.landing')
 
-@section('title', 'LEEMO-PALASADA')
+@section('title', 'LEEMO-Palasada')
 
 @section('content')
-    <section class="hero-panel mb-5">
-        <div class="row align-items-center g-4">
-            <div class="col-lg-6">
-                <p class="section-label text-white-50">Unified QR Market Platform</p>
-                <h1 class="display-5 fw-bold text-white mb-3">Navigate stalls, empower vendors, and simplify market operations with one QR-powered system.</h1>
-                <p class="lead text-white-50 mb-4">LEEMO-PALASADA connects customers, vendors, collectors, managers, and treasurers through product QR codes, stall navigation, and responsive dashboards.</p>
-                <div class="d-flex flex-wrap gap-3">
-                    <a href="{{ route('map.index') }}" class="btn btn-light btn-lg">Open Market Map</a>
-                    @auth
-                        <a href="{{ route(auth()->user()->dashboardRoute()) }}" class="btn btn-outline-light btn-lg">Go to Dashboard</a>
-                    @else
-                        <a href="{{ route('register') }}" class="btn btn-outline-light btn-lg">Create Customer Account</a>
-                    @endauth
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="content-card p-4 bg-white">
-                    <p class="section-label">Search the Market</p>
-                    <form method="GET" action="{{ route('landing') }}" class="row g-3">
-                        <div class="col-md-9">
-                            <input type="text" name="search" class="form-control" placeholder="Search vendor, product, or stall number" value="{{ $search }}">
-                        </div>
-                        <div class="col-md-3">
-                            <button class="btn btn-brand w-100" type="submit">Search</button>
-                        </div>
-                    </form>
+    @php
+        $landingBranding = Vite::asset('resources/img/landinbranding.png');
+        $startUrl = auth()->check() ? route(auth()->user()->dashboardRoute()) : route('register');
+        $supportEmail = $appSettings['support_email'] ?? null;
+        $contactUrl = filled($supportEmail) ? 'mailto:'.$supportEmail : '#contact';
 
-                    @if ($search !== '')
-                        <div class="mt-4">
-                            <h2 class="subheading mb-3">Search results</h2>
-                            <div class="row g-3">
-                                @forelse ($searchResults as $vendor)
-                                    <div class="col-md-6">
-                                        <div class="vendor-card h-100">
-                                            <div class="fw-semibold">{{ $vendor->vendor_name }}</div>
-                                            <small class="text-muted d-block mb-2">Stall {{ $vendor->stall_number }}</small>
-                                            <a class="text-link" href="{{ route('vendors.show', $vendor) }}">Open vendor profile</a>
-                                        </div>
-                                    </div>
-                                @empty
-                                    <p class="text-muted mb-0">No matching vendors or products were found for "{{ $search }}".</p>
-                                @endforelse
+        $features = [
+            [
+                'icon' => 'cil-building',
+                'tone' => 'primary',
+                'title' => 'Smart Stall Management',
+                'content' => 'Monitor stall occupancy, contracts, and vendor information in real time.',
+            ],
+            [
+                'icon' => 'cil-qr-code',
+                'tone' => 'success',
+                'title' => 'QR-Based Payment System',
+                'content' => 'Record and track rental payments instantly using QR code scanning, supporting both cash and digital payments.',
+            ],
+            [
+                'icon' => 'cil-map',
+                'tone' => 'info',
+                'title' => 'Interactive Market Navigation',
+                'content' => 'Help customers easily find stalls using a digital map with a "You Are Here" feature.',
+            ],
+            [
+                'icon' => 'cil-search',
+                'tone' => 'warning',
+                'title' => 'Product Search',
+                'content' => 'Locate products like fruits, vegetables, or meat and instantly see which stalls offer them.',
+            ],
+            [
+                'icon' => 'cil-speedometer',
+                'tone' => 'secondary',
+                'title' => 'Real-Time Dashboards',
+                'content' => 'Provide managers and treasurers with live data for better decision-making and monitoring.',
+            ],
+        ];
+
+        $roles = [
+            [
+                'icon' => 'cil-people',
+                'title' => 'Administrators (Managers & Treasurer)',
+                'content' => 'Manage contracts, monitor payments, and oversee market operations through centralized dashboards.',
+            ],
+            [
+                'icon' => 'cil-mobile',
+                'title' => 'Collectors',
+                'content' => 'Use mobile devices to scan QR codes, collect payments, and automatically update records.',
+            ],
+            [
+                'icon' => 'cil-basket',
+                'title' => 'Renters (Vendors)',
+                'content' => 'Track rental status, view payment history, and receive reminders for contract renewals.',
+            ],
+            [
+                'icon' => 'cil-cart',
+                'title' => 'Customers',
+                'content' => 'Scan QR codes, view stall details, search for products, and navigate the market with ease.',
+            ],
+        ];
+
+        $benefits = [
+            'Eliminates manual paperwork',
+            'Reduces payment errors and disputes',
+            'Provides real-time monitoring',
+            'Enhances customer experience',
+            'Promotes transparency and accountability',
+        ];
+
+        $steps = [
+            'Scan a stall QR code',
+            'View stall details instantly',
+            'Make or record payments',
+            'Access real-time dashboards',
+            'Navigate the market with ease',
+        ];
+    @endphp
+
+    <section class="landing-hero mb-5">
+        <div class="landing-hero-content">
+            <p class="section-label">LEEMO-Palasada</p>
+            <h1 class="display-4 fw-semibold mb-3">Transforming Public Market Management Through Smart QR Technology</h1>
+            <p class="lead text-body-secondary mb-4">LEEMO-Palasada is a unified web and mobile platform that streamlines stall management, digitizes payment collection, and enhances customer navigation in public markets.</p>
+            <div class="d-flex flex-wrap gap-3">
+                <a href="{{ $startUrl }}" class="btn btn-primary btn-lg">
+                    <i class="icon me-2 cil-paper-plane"></i>
+                    Get Started
+                </a>
+                <a href="{{ route('map.index') }}" class="btn btn-outline-primary btn-lg">
+                    <i class="icon me-2 cil-qr-code"></i>
+                    Scan &amp; Explore
+                </a>
+            </div>
+        </div>
+        <div class="landing-hero-media">
+            <img src="{{ $landingBranding }}" alt="LEEMO-Palasada branding" class="landing-hero-image">
+        </div>
+    </section>
+
+    <section id="about" class="landing-section">
+        <div class="row align-items-start g-4">
+            <div class="col-lg-4">
+                <p class="section-label">About the System</p>
+                <h2 class="page-title mb-0">What is LEEMO-Palasada?</h2>
+            </div>
+            <div class="col-lg-8">
+                <p class="fs-5 text-body-secondary">LEEMO-Palasada is a QR-based digital platform designed to modernize public market operations. It connects market administrators, vendors, collectors, and customers into one centralized system, replacing manual processes with efficient, real-time digital solutions.</p>
+                <p class="fs-5 text-body-secondary mb-0">By integrating stall management, payment tracking, and interactive navigation, the system improves transparency, reduces errors, and enhances the overall market experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="landing-section">
+        <div class="landing-section-header">
+            <p class="section-label">Key Features</p>
+            <h2 class="page-title mb-0">Key Features</h2>
+        </div>
+        <div class="row g-4">
+            @foreach ($features as $feature)
+                <div class="col-md-6 col-xl-4">
+                    <article class="card landing-card h-100">
+                        <div class="card-body">
+                            <span class="landing-icon text-bg-{{ $feature['tone'] }} mb-4">
+                                <i class="icon icon-lg {{ $feature['icon'] }}"></i>
+                            </span>
+                            <h3 class="h5 card-title">{{ $feature['title'] }}</h3>
+                            <p class="card-text text-body-secondary mb-0">{{ $feature['content'] }}</p>
+                        </div>
+                    </article>
+                </div>
+            @endforeach
+        </div>
+    </section>
+
+    <section id="roles" class="landing-section">
+        <div class="landing-section-header">
+            <p class="section-label">User Roles</p>
+            <h2 class="page-title mb-0">Designed for Every Market User</h2>
+        </div>
+        <div class="row g-4">
+            @foreach ($roles as $role)
+                <div class="col-md-6">
+                    <article class="card landing-card h-100">
+                        <div class="card-body d-flex gap-3">
+                            <span class="landing-icon bg-primary-subtle text-primary-emphasis">
+                                <i class="icon icon-lg {{ $role['icon'] }}"></i>
+                            </span>
+                            <div>
+                                <h3 class="h5 card-title">{{ $role['title'] }}</h3>
+                                <p class="card-text text-body-secondary mb-0">{{ $role['content'] }}</p>
                             </div>
                         </div>
-                    @endif
+                    </article>
+                </div>
+            @endforeach
+        </div>
+    </section>
+
+    <section id="why" class="landing-section">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-5">
+                <p class="section-label">Why Choose LEEMO-Palasada?</p>
+                <h2 class="page-title mb-3">Why Choose Our System?</h2>
+                <p class="text-body-secondary mb-0">A centralized system helps teams reduce manual work, align payment records, and serve customers with clearer information.</p>
+            </div>
+            <div class="col-lg-7">
+                <div class="card landing-card">
+                    <div class="card-body">
+                        <ul class="landing-check-list mb-0">
+                            @foreach ($benefits as $benefit)
+                                <li>
+                                    <i class="icon cil-check-circle text-success"></i>
+                                    <span>{{ $benefit }}</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="row g-4 mb-5">
-        <div class="col-lg-7">
-            <div class="content-card p-4 h-100">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div>
-                        <p class="section-label">Interactive Navigation</p>
-                        <h2 class="subheading mb-0">Explore the public market map</h2>
+    <section id="how-it-works" class="landing-section">
+        <div class="landing-section-header">
+            <p class="section-label">How It Works</p>
+            <h2 class="page-title mb-0">How It Works</h2>
+        </div>
+        <div class="row g-3">
+            @foreach ($steps as $index => $step)
+                <div class="col-md">
+                    <div class="card landing-card h-100">
+                        <div class="card-body">
+                            <span class="landing-step-number mb-3">{{ $index + 1 }}</span>
+                            <p class="fw-semibold mb-0">{{ $step }}</p>
+                        </div>
                     </div>
-                    <a href="{{ route('map.index') }}" class="text-link">Full map</a>
                 </div>
-                <div class="map-frame" data-map="leaflet" data-markers='@json($mapMarkers)' data-entry-lat="14.59951200" data-entry-lng="120.98422200"></div>
-            </div>
+            @endforeach
         </div>
-        <div class="col-lg-5">
-            <div class="content-card p-4 h-100">
-                <p class="section-label">QR Workflows</p>
-                <h2 class="subheading mb-3">How customers use the platform</h2>
-                <div class="vstack gap-3">
-                    <div class="list-card"><strong>1. Scan product QR</strong><p class="small text-muted mb-0">Open product details instantly, review availability, and add items to cart.</p></div>
-                    <div class="list-card"><strong>2. Scan stall QR</strong><p class="small text-muted mb-0">Launch interactive stall navigation with highlighted locations on the map.</p></div>
-                    <div class="list-card"><strong>3. Checkout with tracking</strong><p class="small text-muted mb-0">Simulate cash or QRPh payment and store transaction history in your dashboard.</p></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </section>
 
-    <div class="row g-4 mb-5">
-        <div class="col-lg-6">
-            <div class="content-card p-4 h-100">
-                <p class="section-label">Featured Vendors</p>
-                <h2 class="subheading mb-3">Trusted market stalls</h2>
-                <div class="row g-3">
-                    @foreach ($featuredVendors as $vendor)
-                        <div class="col-md-6">
-                            <div class="vendor-card h-100">
-                                <div class="d-flex justify-content-between align-items-start gap-3">
-                                    <div>
-                                        <h3 class="h6 mb-1">{{ $vendor->vendor_name }}</h3>
-                                        <small class="text-muted">Stall {{ $vendor->stall_number }}</small>
-                                    </div>
-                                    <span class="badge-soft">Active</span>
-                                </div>
-                                <div class="mt-3 d-flex gap-2 flex-wrap">
-                                    <a class="btn btn-sm btn-outline-brand" href="{{ route('vendors.show', $vendor) }}">Profile</a>
-                                    @if ($vendor->marketMap)
-                                        <a class="btn btn-sm btn-outline-brand" href="{{ route('qr.locations.show', $vendor->marketMap->qr_location_code) }}">Navigate</a>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+    <section id="contact" class="landing-section pb-2">
+        <div class="landing-cta text-center">
+            <p class="section-label text-white-50">Call to Action</p>
+            <h2 class="display-6 fw-semibold text-white mb-3">Experience Smarter Market Management Today</h2>
+            <p class="lead text-white-50 mb-4">Join the future of public market systems with LEEMO-Palasada. Simplify operations, improve efficiency, and enhance customer satisfaction, all in one platform.</p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="{{ $startUrl }}" class="btn btn-light btn-lg">
+                    <i class="icon me-2 cil-paper-plane"></i>
+                    Get Started Now
+                </a>
+                <a href="{{ $contactUrl }}" class="btn btn-outline-light btn-lg">
+                    <i class="icon me-2 cil-phone"></i>
+                    Contact Us
+                </a>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="content-card p-4 h-100">
-                <p class="section-label">Popular Picks</p>
-                <h2 class="subheading mb-3">Sample products available today</h2>
-                <div class="row g-3">
-                    @foreach ($topProducts as $product)
-                        <div class="col-md-6">
-                            <div class="product-card h-100">
-                                <div class="d-flex justify-content-between align-items-start gap-3 mb-2">
-                                    <div>
-                                        <h3 class="h6 mb-1">{{ $product->product_name }}</h3>
-                                        <small class="text-muted">{{ $product->vendor->vendor_name }}</small>
-                                    </div>
-                                    <span class="badge-soft">PHP {{ number_format($product->price, 2) }}</span>
-                                </div>
-                                <a class="text-link" href="{{ route('qr.products.show', $product) }}">View product QR page</a>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
+    </section>
 @endsection

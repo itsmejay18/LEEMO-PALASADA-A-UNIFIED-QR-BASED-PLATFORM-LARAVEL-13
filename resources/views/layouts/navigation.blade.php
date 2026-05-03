@@ -1,19 +1,20 @@
 @php
     $appName = $appSettings['market_name'] ?? config('app.name', 'LEEMO-PALASADA');
+    $faviconPath = Vite::asset('resources/img/favicon.png');
 @endphp
 
-<nav class="navbar navbar-expand-lg app-navbar sticky-top">
+<nav class="navbar navbar-expand-lg app-navbar sticky-top border-bottom">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-3" href="{{ route('landing') }}">
-            <span class="brand-mark">LP</span>
+            <img class="brand-mark brand-mark-img" src="{{ $faviconPath }}" alt="{{ $appName }} icon" width="48" height="48">
             <span>
                 <span class="brand-title">{{ $appName }}</span>
                 <small class="brand-subtitle d-block">Unified QR Market Platform</small>
             </span>
         </a>
 
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-coreui-toggle="collapse" data-coreui-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="icon icon-lg cil-menu"></i>
         </button>
 
         <div class="collapse navbar-collapse" id="mainNav">
@@ -84,7 +85,7 @@
                     @endif
 
                     <li class="nav-item dropdown ms-lg-2">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" data-coreui-toggle="dropdown" aria-expanded="false">
                             <span class="badge-soft">{{ auth()->user()->primaryRole() ?? 'User' }}</span>
                             <span>{{ auth()->user()->name }}</span>
                         </a>

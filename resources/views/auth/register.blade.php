@@ -1,46 +1,60 @@
-@extends('layouts.guest')
+@extends('layouts.auth-coreui')
 
 @section('title', 'Register | LEEMO-PALASADA')
-@section('hide_navigation', true)
 
 @section('content')
-    <div class="row justify-content-center min-vh-70">
-        <div class="col-lg-6">
-            <div class="auth-card">
-                <p class="section-label">Customer Registration</p>
-                <h1 class="auth-title">Create your customer account</h1>
-                <p class="text-muted mb-4">Registration creates a Customer account only. Role changes are handled by the admin panel.</p>
+    <div class="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card mb-4 mx-4">
+                        <div class="card-body p-4">
+                            <h1>Register</h1>
+                            <p class="text-body-secondary">Create your customer account</p>
 
-                <form method="POST" action="{{ route('register') }}" class="row g-3">
-                    @csrf
+                            @include('partials.alerts')
 
-                    <div class="col-12">
-                        <label class="form-label" for="name">Full Name</label>
-                        <input id="name" type="text" name="name" value="{{ old('name') }}" class="form-control" required autofocus autocomplete="name">
+                            <form method="POST" action="{{ route('register') }}">
+                                @csrf
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">
+                                        <i class="icon cil-user"></i>
+                                    </span>
+                                    <input id="name" class="form-control" type="text" name="name" value="{{ old('name') }}" placeholder="Full Name" required autofocus autocomplete="name">
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">
+                                        <i class="icon cil-envelope-open"></i>
+                                    </span>
+                                    <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="Email Address" required autocomplete="username">
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">
+                                        <i class="icon cil-lock-locked"></i>
+                                    </span>
+                                    <input id="password" class="form-control" type="password" name="password" placeholder="Password" required autocomplete="new-password">
+                                </div>
+
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text">
+                                        <i class="icon cil-lock-locked"></i>
+                                    </span>
+                                    <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" placeholder="Repeat password" required autocomplete="new-password">
+                                </div>
+
+                                <button class="btn btn-brand w-100" type="submit">Create Account</button>
+                            </form>
+
+                            <div class="d-flex justify-content-between gap-3 mt-4">
+                                <a class="btn btn-link px-0" href="{{ route('login') }}">Sign in instead</a>
+                                <a class="btn btn-link px-0" href="{{ route('landing') }}">Back to landing</a>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="col-12">
-                        <label class="form-label" for="email">Email Address</label>
-                        <input id="email" type="email" name="email" value="{{ old('email') }}" class="form-control" required autocomplete="username">
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label" for="password">Password</label>
-                        <input id="password" type="password" name="password" class="form-control" required autocomplete="new-password">
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label" for="password_confirmation">Confirm Password</label>
-                        <input id="password_confirmation" type="password" name="password_confirmation" class="form-control" required autocomplete="new-password">
-                    </div>
-
-                    <div class="col-12">
-                        <button class="btn btn-brand w-100" type="submit">Create Account</button>
-                    </div>
-                </form>
-
-                <hr class="my-4">
-                <p class="mb-0 text-muted">Already registered? <a class="text-link" href="{{ route('login') }}">Sign in here</a></p>
+                </div>
             </div>
         </div>
     </div>

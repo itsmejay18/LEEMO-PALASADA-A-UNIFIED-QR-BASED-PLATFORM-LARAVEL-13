@@ -1,0 +1,421 @@
+body.market-app,
+body.auth-coreui-shell {
+    background: var(--cui-tertiary-bg);
+    color: var(--cui-body-color);
+    font-family: Manrope, var(--cui-body-font-family);
+}
+
+[data-coreui-theme='dark'] body.market-app,
+[data-coreui-theme='dark'] body.auth-coreui-shell {
+    background: var(--cui-dark-bg-subtle);
+}
+
+.body,
+.page-shell {
+    background: transparent;
+}
+
+.page-shell {
+    padding-bottom: 2rem;
+}
+
+.dashboard-shell .wrapper {
+    min-width: 0;
+}
+
+.dashboard-shell .sidebar-nav {
+    gap: 0;
+}
+
+.dashboard-shell .sidebar-backdrop.show {
+    pointer-events: auto;
+}
+
+.app-navbar {
+    background: var(--cui-body-bg);
+    box-shadow: none;
+}
+
+.navbar-brand,
+.navbar-brand:hover,
+.navbar-brand:focus {
+    color: var(--cui-emphasis-color) !important;
+}
+
+.brand-mark {
+    border-radius: var(--cui-border-radius);
+}
+
+.brand-mark-img {
+    background: transparent;
+    display: block;
+    flex: 0 0 auto;
+    height: 48px;
+    object-fit: contain;
+    width: 48px;
+}
+
+.brand-title,
+.brand-subtitle {
+    color: var(--cui-emphasis-color);
+}
+
+.brand-subtitle {
+    color: var(--cui-secondary-color);
+}
+
+.nav-link {
+    color: var(--cui-secondary-color);
+}
+
+.nav-link.active,
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--cui-primary);
+}
+
+.page-title,
+.subheading,
+.auth-title {
+    color: var(--cui-emphasis-color);
+    font-family: inherit;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.page-title {
+    font-size: 1.75rem;
+    line-height: 1.2;
+}
+
+.subheading {
+    font-size: 1.125rem;
+    line-height: 1.35;
+}
+
+.section-label,
+.table-theme th {
+    color: var(--cui-secondary-color);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.text-muted,
+.text-body-secondary {
+    color: var(--cui-secondary-color) !important;
+}
+
+.content-card,
+.auth-card,
+.scanner-card,
+.list-card,
+.vendor-card,
+.product-card,
+.stat-card {
+    background: var(--cui-body-bg);
+    border: var(--cui-border-width) solid var(--cui-border-color);
+    border-radius: var(--cui-border-radius);
+    box-shadow: none;
+    color: var(--cui-body-color);
+}
+
+.content-card.bg-white {
+    background: var(--cui-body-bg) !important;
+}
+
+.content-card,
+.auth-card,
+.scanner-card,
+.stat-card {
+    padding: 1.5rem;
+}
+
+.list-card,
+.vendor-card,
+.product-card {
+    padding: 1rem;
+}
+
+.stat-card.compact {
+    min-height: auto;
+}
+
+.stat-card span {
+    color: var(--cui-secondary-color);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.stat-card strong,
+.checkout-total {
+    color: var(--cui-emphasis-color);
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.badge-soft {
+    background: var(--cui-tertiary-bg);
+    border: var(--cui-border-width) solid var(--cui-border-color);
+    border-radius: var(--cui-border-radius-pill);
+    color: var(--cui-emphasis-color);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    padding: 0.35rem 0.65rem;
+    text-transform: none;
+}
+
+.table-theme td,
+.table-theme th {
+    border-color: var(--cui-border-color);
+}
+
+.table-theme tbody tr:hover {
+    background: var(--cui-tertiary-bg);
+}
+
+.form-control,
+.form-select,
+.input-group-text {
+    background-color: var(--cui-body-bg);
+    border-color: var(--cui-border-color);
+    border-radius: var(--cui-border-radius);
+    color: var(--cui-body-color);
+    min-height: auto;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--cui-primary);
+    box-shadow: 0 0 0 0.25rem rgba(var(--cui-primary-rgb), 0.25);
+}
+
+.btn-brand {
+    background: var(--cui-primary);
+    border-color: var(--cui-primary);
+    color: var(--cui-primary-contrast);
+}
+
+.btn-brand:hover,
+.btn-brand:focus {
+    background: var(--cui-primary-text-emphasis);
+    border-color: var(--cui-primary-text-emphasis);
+    color: var(--cui-primary-contrast);
+}
+
+.btn-outline-brand,
+.text-link {
+    color: var(--cui-primary);
+}
+
+.btn-outline-brand {
+    background: transparent;
+    border-color: var(--cui-primary);
+}
+
+.btn-outline-brand:hover,
+.btn-outline-brand:focus {
+    background: var(--cui-primary);
+    border-color: var(--cui-primary);
+    color: var(--cui-primary-contrast);
+}
+
+.text-link {
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.text-link:hover,
+.text-link:focus {
+    color: var(--cui-primary-text-emphasis);
+    text-decoration: underline;
+}
+
+.hero-panel {
+    background: var(--cui-primary);
+    border-radius: var(--cui-border-radius);
+    box-shadow: none;
+}
+
+.landing-section {
+    padding-block: 2.75rem;
+    scroll-margin-top: 5rem;
+}
+
+.landing-section-header {
+    margin-bottom: 1.5rem;
+    max-width: 44rem;
+}
+
+.landing-hero {
+    align-items: center;
+    background: transparent;
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 34%);
+    min-height: 430px;
+    overflow: visible;
+    padding: 3rem 0;
+}
+
+.landing-hero-content {
+    max-width: 48rem;
+    min-width: 0;
+}
+
+.landing-hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.15;
+    overflow-wrap: break-word;
+}
+
+.landing-hero-media {
+    background: var(--cui-body-bg);
+    border: var(--cui-border-width) solid var(--cui-border-color);
+    border-radius: var(--cui-border-radius);
+    box-shadow: 0 1rem 2rem rgba(33, 38, 49, 0.08);
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+    padding: 1.5rem;
+    width: min(100%, 460px);
+}
+
+.landing-hero-image {
+    display: block;
+    height: auto;
+    max-width: 420px;
+    width: 100%;
+}
+
+.landing-card {
+    border-color: var(--cui-border-color);
+    border-radius: var(--cui-border-radius);
+    box-shadow: none;
+}
+
+.landing-icon {
+    align-items: center;
+    border-radius: var(--cui-border-radius);
+    display: inline-flex;
+    flex: 0 0 3rem;
+    height: 3rem;
+    justify-content: center;
+    width: 3rem;
+}
+
+.landing-check-list {
+    display: grid;
+    gap: 1rem;
+    list-style: none;
+    padding-left: 0;
+}
+
+.landing-check-list li {
+    align-items: center;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.landing-step-number {
+    align-items: center;
+    background: var(--cui-tertiary-bg);
+    border: var(--cui-border-width) solid var(--cui-border-color);
+    border-radius: var(--cui-border-radius-pill);
+    color: var(--cui-emphasis-color);
+    display: inline-flex;
+    font-weight: 600;
+    height: 2.25rem;
+    justify-content: center;
+    width: 2.25rem;
+}
+
+.landing-cta {
+    background: var(--cui-primary);
+    border-radius: var(--cui-border-radius);
+    padding: 3.5rem;
+}
+
+@media (max-width: 991.98px) {
+    .landing-hero {
+        gap: 2rem;
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 2.25rem 0 3rem;
+    }
+
+    .landing-hero h1 {
+        font-size: 2.75rem;
+    }
+
+    .landing-hero-media {
+        justify-content: flex-start;
+        padding: 1rem;
+    }
+
+    .landing-hero-image {
+        max-width: 20rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .landing-cta {
+        padding-inline: 1.5rem;
+    }
+
+    .landing-hero {
+        padding: 2rem 0;
+        width: min(100%, calc(100vw - 1.5rem));
+    }
+
+    .landing-hero h1 {
+        font-size: 2rem;
+    }
+
+    .landing-hero-content,
+    .landing-hero-media {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .landing-hero .lead {
+        font-size: 1.05rem;
+    }
+
+    .landing-hero .btn {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+.map-frame,
+.scanner-frame,
+.qr-preview {
+    border-radius: var(--cui-border-radius);
+}
+
+.qr-preview {
+    background: var(--cui-tertiary-bg);
+    border-color: var(--cui-border-color);
+}
+
+.receipt-sheet {
+    background: var(--cui-body-bg);
+}
+
+.auth-coreui-shell .card,
+.auth-coreui-shell .card-group > .card {
+    border-color: var(--cui-border-color);
+}
+
+.auth-coreui-shell .bg-primary {
+    background: var(--cui-primary) !important;
+}
+
+.dashboard-shell .header-nav {
+    min-width: 0;
+}

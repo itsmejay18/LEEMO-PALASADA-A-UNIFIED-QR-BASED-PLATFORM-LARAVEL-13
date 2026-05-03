@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
 
         for ($i = 1; $i <= 12; $i++) {
             $customer = User::updateOrCreate(
-                ['email' => 'customer'.$i.'@leemo.com'],
+                ['email' => 'customer@leemo.com'],
                 [
                     'name' => 'Customer '.$i,
                     'password' => 'password',

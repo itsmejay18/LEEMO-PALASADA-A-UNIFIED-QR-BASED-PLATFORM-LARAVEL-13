@@ -8,11 +8,11 @@
         <h1 class="page-title mb-1">Verify collections and issue receipts</h1>
     </div>
 
-    <div class="row g-4 mb-4">
-        <div class="col-md-4"><div class="stat-card"><span>Pending Collections</span><strong>{{ $stats['pending_collections'] }}</strong></div></div>
-        <div class="col-md-4"><div class="stat-card"><span>Verified Today</span><strong>PHP {{ number_format($stats['verified_today'], 2) }}</strong></div></div>
-        <div class="col-md-4"><div class="stat-card"><span>Monthly Verified</span><strong>PHP {{ number_format($stats['monthly_verified'], 2) }}</strong></div></div>
-    </div>
+    @include('partials.coreui-stat-cards', ['cards' => [
+        ['label' => 'Pending Collections', 'value' => $stats['pending_collections'], 'color' => 'primary', 'icon' => 'cil-clock', 'change' => '12.4%', 'trend' => 'up', 'progress' => 70],
+        ['label' => 'Verified Today', 'value' => 'PHP '.number_format($stats['verified_today'], 2), 'color' => 'info', 'icon' => 'cil-calendar-check', 'change' => '8.1%', 'trend' => 'up', 'progress' => 58],
+        ['label' => 'Monthly Verified', 'value' => 'PHP '.number_format($stats['monthly_verified'], 2), 'color' => 'warning', 'icon' => 'cil-bank', 'change' => '4.5%', 'trend' => 'up', 'progress' => 45],
+    ]])
 
     <div class="row g-4">
         <div class="col-lg-6">

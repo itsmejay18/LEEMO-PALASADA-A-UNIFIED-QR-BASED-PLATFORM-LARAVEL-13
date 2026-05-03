@@ -248,7 +248,53 @@ const initDashboardSidebar = () => {
     });
 };
 
+const initCoreUiShell = () => {
+    const sidebar = document.querySelector('#sidebar');
+
+    if (sidebar && window.coreui?.Sidebar) {
+        window.coreui.Sidebar.getOrCreateInstance(sidebar);
+    }
+
+    const header = document.querySelector('header.header');
+
+    if (header) {
+        document.addEventListener('scroll', () => {
+            header.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0);
+        });
+    }
+
+    const themeIcon = document.querySelector('.theme-icon-active-font');
+    const themeIconClasses = ['cil-sun', 'cil-moon', 'cil-contrast'];
+    const themeIconMap = {
+        light: 'cil-sun',
+        dark: 'cil-moon',
+        auto: 'cil-contrast',
+    };
+
+    const updateThemeIcon = () => {
+        if (!themeIcon) {
+            return;
+        }
+
+        const activeTheme = document.querySelector('[data-coreui-theme-value].active')?.getAttribute('data-coreui-theme-value')
+            || localStorage.getItem('coreui-free-bootstrap-admin-template-theme')
+            || 'auto';
+
+        themeIcon.classList.remove(...themeIconClasses);
+        themeIcon.classList.add(themeIconMap[activeTheme] || themeIconMap.auto);
+    };
+
+    updateThemeIcon();
+
+    document.querySelectorAll('[data-coreui-theme-value]').forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+            window.setTimeout(updateThemeIcon, 0);
+        });
+    });
+};
+
 document.addEventListener('DOMContentLoaded', () => {
+    initCoreUiShell();
     initDashboardSidebar();
     initLeafletMaps();
     initQrScanners();

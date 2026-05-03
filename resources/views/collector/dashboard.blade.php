@@ -11,11 +11,11 @@
         <a href="{{ route('collector.collections.create') }}" class="btn btn-brand">Record Collection</a>
     </div>
 
-    <div class="row g-4 mb-4">
-        <div class="col-md-4"><div class="stat-card"><span>Assigned Records</span><strong>{{ $stats['assigned_records'] }}</strong></div></div>
-        <div class="col-md-4"><div class="stat-card"><span>Monthly Total</span><strong>PHP {{ number_format($stats['monthly_total'], 2) }}</strong></div></div>
-        <div class="col-md-4"><div class="stat-card"><span>Pending Verification</span><strong>{{ $stats['pending_verification'] }}</strong></div></div>
-    </div>
+    @include('partials.coreui-stat-cards', ['cards' => [
+        ['label' => 'Assigned Records', 'value' => $stats['assigned_records'], 'color' => 'primary', 'icon' => 'cil-clipboard', 'change' => '12.4%', 'trend' => 'up', 'progress' => 70],
+        ['label' => 'Monthly Total', 'value' => 'PHP '.number_format($stats['monthly_total'], 2), 'color' => 'info', 'icon' => 'cil-wallet', 'change' => '8.1%', 'trend' => 'up', 'progress' => 58],
+        ['label' => 'Pending Verification', 'value' => $stats['pending_verification'], 'color' => 'warning', 'icon' => 'cil-check-circle', 'change' => '4.5%', 'trend' => 'up', 'progress' => 45],
+    ]])
 
     <div class="content-card p-4">
         <h2 class="subheading mb-3">Recent collections</h2>

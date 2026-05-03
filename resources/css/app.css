@@ -387,9 +387,8 @@ body.sidebar-collapsed .sidebar-footer {
 
 .brand-mark {
     align-items: center;
-    background: linear-gradient(135deg, var(--leemo-primary), #4caf50);
+    background: transparent;
     border-radius: 16px;
-    color: #fff;
     display: inline-flex;
     font-family: 'Outfit', sans-serif;
     font-size: 1.1rem;
@@ -397,6 +396,12 @@ body.sidebar-collapsed .sidebar-footer {
     height: 48px;
     justify-content: center;
     width: 48px;
+}
+
+.brand-mark-img {
+    display: block;
+    flex: 0 0 auto;
+    object-fit: contain;
 }
 
 .brand-title,

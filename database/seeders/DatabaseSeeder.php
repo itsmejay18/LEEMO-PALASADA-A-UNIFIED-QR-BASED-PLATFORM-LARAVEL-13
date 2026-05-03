@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             TransactionSeeder::class,
             CollectionSeeder::class,
+            HeaderItemSeeder::class,
         ]);
 
         $users = User::query()->get();

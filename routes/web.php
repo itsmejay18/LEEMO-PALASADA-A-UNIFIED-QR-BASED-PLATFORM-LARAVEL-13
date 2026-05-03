@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CollectorController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\HeaderItemController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function (): void {
 
     Route::get('/qr/scanner', [QRController::class, 'scanner'])->name('qr.scanner');
     Route::get('/qr/generator', [QRController::class, 'generator'])->name('qr.generator');
+    Route::patch('/header-items/{headerItem}/read', [HeaderItemController::class, 'markRead'])->name('header-items.read');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

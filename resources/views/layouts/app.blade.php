@@ -61,21 +61,24 @@
                     </ul>
 
                     <ul class="header-nav ms-auto d-none d-sm-flex">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="icon icon-lg cil-bell"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="icon icon-lg cil-list-rich"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="icon icon-lg cil-envelope-open"></i>
-                            </a>
-                        </li>
+                        @include('partials.header-item-dropdown', [
+                            'type' => 'notification',
+                            'icon' => 'cil-bell',
+                            'label' => 'Notifications',
+                            'empty' => 'No notifications yet.',
+                        ])
+                        @include('partials.header-item-dropdown', [
+                            'type' => 'task',
+                            'icon' => 'cil-list-rich',
+                            'label' => 'Tasks',
+                            'empty' => 'No tasks assigned.',
+                        ])
+                        @include('partials.header-item-dropdown', [
+                            'type' => 'message',
+                            'icon' => 'cil-envelope-open',
+                            'label' => 'Messages',
+                            'empty' => 'No messages yet.',
+                        ])
                     </ul>
 
                     <ul class="header-nav">

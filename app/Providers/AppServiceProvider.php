@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Collection;
+use App\Models\HeaderItem;
 use App\Models\Product;
 use App\Models\Setting;
 use App\Models\Transaction;
@@ -72,6 +73,25 @@ class AppServiceProvider extends ServiceProvider
             } catch (Throwable) {
                 $view->with('appSettings', collect());
             }
+        });
+
+        View::composer('layouts.app', function ($view): void {
+            $headerItems = collect();
+
+            try {
+                if (auth()->check() && Schema::hasTable('header_items')) {
+                    $headerItems = HeaderItem::query()
+                        ->forUser(auth()->user())
+                        ->latest()
+                        ->limit(15)
+                        ->get()
+                        ->groupBy('type');
+                }
+            } catch (Throwable) {
+                $headerItems = collect();
+            }
+
+            $view->with('headerItems', $headerItems);
         });
     }
 }

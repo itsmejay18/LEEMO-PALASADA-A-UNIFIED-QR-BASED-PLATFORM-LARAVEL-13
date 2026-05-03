@@ -74,6 +74,11 @@ class User extends Authenticatable
         return $this->hasMany(ActivityLog::class);
     }
 
+    public function headerItems(): HasMany
+    {
+        return $this->hasMany(HeaderItem::class);
+    }
+
     public function favoriteVendors(): HasMany
     {
         return $this->hasMany(FavoriteVendor::class);

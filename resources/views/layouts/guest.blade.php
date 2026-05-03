@@ -13,7 +13,10 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="market-app guest-mode">
-        @include('layouts.navigation')
+        @hasSection('hide_navigation')
+        @else
+            @include('layouts.navigation')
+        @endif
 
         <main class="page-shell">
             <div class="container py-4">

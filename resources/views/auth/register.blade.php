@@ -1,6 +1,7 @@
 @extends('layouts.guest')
 
 @section('title', 'Register | LEEMO-PALASADA')
+@section('hide_navigation', true)
 
 @section('content')
     <div class="row justify-content-center min-vh-70">
